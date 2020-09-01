@@ -34,7 +34,7 @@ module.exports.create = async (req, res, next) => {
       money: req.body.money,
     });
     await user_bank.save();
-    return res.send('Lien ket thanh cong');
+    return res.send('Chuyen tien thanh cong');
   } catch (err) {
     return res.json({ message: err });
   }

@@ -32,16 +32,10 @@ const upload = multer({
 });
 
 router.post(
-  '/tradingpoint',
+  '/trading',
   verify,
   upload.single('elecContract'),
-  investmentListController.tradingpoint
-);
-router.post(
-  '/tradingmoney',
-  verify,
-  upload.single('elecContract'),
-  investmentListController.tradingmoney
+  investmentListController.trading
 );
 router.get('/investmentAll', investmentListController.all);
 router.get('/investmentfalse', investmentListController.false);

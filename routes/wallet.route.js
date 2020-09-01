@@ -40,14 +40,6 @@ router.post('/withdraw/:id', verify, walletController.withdraw); // rut tien
 router.get('/statusfalse', walletController.statusFalse); // admin kiem tra status
 router.patch('/acceptloadedpoint/:id', walletController.acceptLoadedPoint); // admin accept
 router.patch('/acceptwithdraw/:id', walletController.acceptWithdraw); // admin accept
-
 router.get('/totalpoint', verify, walletController.totalPoint);
-router.get('/totalinvested', walletController.totalInvested);
-router.get('/countacc', walletController.countAcc);
-router.get('/totalloaded', walletController.totalLoaded);
-router.get('/totalwithdraw', walletController.totalWithdraw);
 
-//Dashboard
-router.get('/totalcomission', verify, walletController.totalComission);
-router.get('/countusersunder', verify, walletController.countUsersUnder);
 module.exports = router;

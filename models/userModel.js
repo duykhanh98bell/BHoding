@@ -79,16 +79,10 @@ const userSchema = new Schema(
     introducedLink: {
       type: String,
     },
-    active: { 
-      type: Boolean, 
-      default: false 
-    }, 
-    activeToken: {
-      type: String
-    }, 
-    activeExpires: {
-      type: Date
-    }
+    status: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

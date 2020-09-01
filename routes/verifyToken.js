@@ -1,21 +1,14 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel');
 
-module.exports = async (req, res, next) => {
+module.exports = (req, res, next) => {
   const token = req.header('auth-token');
-  if (!token) return res.status(401).send({ message: 'Access Denied' });
+  if (!token) return res.status(401).send('Truy cap bi tu choi');
 
   try {
-    const data = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-    const user = await User.findOne({ _id: data._id });
-
-    if (!user) {
-      throw new Error()
-    }
-
-    req.user = user;
+    const verify = jwt.verify(token, process.env.TOKEN_SECRET);
+    req.user = verify;
     next();
   } catch (err) {
-    return res.status(400).send({ message: err });
+    return res.status(400).send('Token khong hop le');
   }
 };

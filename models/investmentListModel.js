@@ -9,7 +9,7 @@ const investmentListSchema = new Schema(
     },
     investmentPackage_id: {
       type: Schema.Types.ObjectId,
-      ref: 'investmentPackage',
+      ref: 'investment_package',
     },
     bank_id: {
       type: Schema.Types.ObjectId,
