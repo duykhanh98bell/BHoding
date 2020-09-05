@@ -4,12 +4,8 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 // express app.
-const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 app.use('/eleccontracts', express.static('elecContracts'));
 
@@ -24,11 +20,10 @@ mongoose
   .connect(process.env.DB_CONNECT, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   })
   .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.log(err));
-
-app.listen(port, () => console.log(`Listening at: ${port}...`));
 
 // middleware & static files.
 app.use(express.urlencoded({ extended: true }));
@@ -39,21 +34,12 @@ app.use((req, res, next) => {
   next();
 });
 
+//router
 app.use('/investment', InvestmentRoute);
 app.use('/bank', BankRoute);
-app.use('/user', AuthRoute);
+app.use('/users', AuthRoute);
 app.use('/investmentlist', InvestmentListRoute);
 app.use('/userBank', UserBankRoute);
 app.use('/wallet', WalletRoute);
-// api route.
-//app.use('/api/introduces', require('./api/routes/introduceRoute'));
 
-// 404 pages.
-app.use((req, res) => {
-  res.status(404).send('404');
-});
-
-// error handling middleware.
-app.use((err, req, res, next) => {
-  res.status(422).send({ error: err.message });
-});
+app.listen(port, () => console.log(`Listening at: ${port}...`));

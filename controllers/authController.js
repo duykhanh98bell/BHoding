@@ -120,6 +120,7 @@ module.exports.update = async (req, res, next) => {
   }
 };
 module.exports.login = async (req, res, next) => {
+  console.log('ok');
   const { error } = loginValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
